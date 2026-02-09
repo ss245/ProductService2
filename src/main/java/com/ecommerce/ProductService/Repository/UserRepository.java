@@ -1,5 +1,6 @@
 package com.ecommerce.ProductService.Repository;
 
+import com.ecommerce.ProductService.Models.Instructor;
 import com.ecommerce.ProductService.Models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,10 +11,12 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Override
     Optional<User> findById(Long aLong);
 
-    Optional<User> findByname(String name);
+    List<User> findByname(String name);
 
-    List<User> findByNameEndingWith(String suffix);
+   // List<User> findByNameEndingWith(String suffix);
 
     @Override
     User save(User entity);
+
+    List<Instructor> findByName(String name);
 }

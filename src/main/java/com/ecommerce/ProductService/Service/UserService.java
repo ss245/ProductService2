@@ -1,6 +1,7 @@
 package com.ecommerce.ProductService.Service;
 
 import com.ecommerce.ProductService.DTOs.UserDto;
+import com.ecommerce.ProductService.Models.Instructor;
 import com.ecommerce.ProductService.Models.User;
 import com.ecommerce.ProductService.Repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -25,11 +26,15 @@ public class UserService {
         return user;
     }
 
-    public User getUserByName(String name) {
-        return userRepository.findByname(name).get();
+    public List<Instructor> getInstructorByName(String name) {
+        return userRepository.findByName(name);
     }
 
-    public List<User> getByNameEndingwith(String suffix) {
-        return userRepository.findByNameEndingWith(suffix);
+    public List<User> getUserByName(String name) {
+        return userRepository.findByname(name);
     }
+
+//    public List<User> getByNameEndingwith(String suffix) {
+//        return userRepository.findByNameEndingWith(suffix);
+//    }
 }

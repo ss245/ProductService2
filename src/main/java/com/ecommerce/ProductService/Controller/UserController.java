@@ -1,7 +1,9 @@
 package com.ecommerce.ProductService.Controller;
 
 import com.ecommerce.ProductService.DTOs.UserDto;
+import com.ecommerce.ProductService.Models.Instructor;
 import com.ecommerce.ProductService.Models.User;
+import com.ecommerce.ProductService.Service.InstructorService;
 import com.ecommerce.ProductService.Service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +20,11 @@ public class UserController {
     //injecting dependency injection
 
     private final UserService userService;
+    private final InstructorService instructorService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, InstructorService instructorService) {
         this.userService = userService;
+        this.instructorService = instructorService;
     }
 
     @PostMapping("")
@@ -28,17 +32,27 @@ public class UserController {
         return userService.createUser(userDto);
     }
 
+    @PostMapping("/instructor")
+    public Instructor createInstructor(@RequestBody UserDto userDto){
+        return instructorService.createInstructor(userDto);
+    }
+
     @GetMapping("/{name}")
-    public User getUserByName(@PathVariable(name="name") String name){
+    public List<Instructor> getInstructorByName(@PathVariable(name="name") String name){
+        return userService.getInstructorByName(name);
+    }
+
+    @GetMapping("/user/{name}")
+    public List<User> getUserByName(@PathVariable(name="name") String name){
         return userService.getUserByName(name);
     }
 
     // Now we are implementing findByNameEndingWith method
 
-    @GetMapping("/{end}/{suffix}")
-    public List<User> getByNameEndingWith(@PathVariable("end") String end,@PathVariable("suffix") String suffix){
-        return userService.getByNameEndingwith(suffix);
-    }
+//    @GetMapping("/{end}/{suffix}")
+//    public List<User> getByNameEndingWith(@PathVariable("end") String end,@PathVariable("suffix") String suffix){
+//        return userService.getByNameEndingwith(suffix);
+//    }
 
 
 
