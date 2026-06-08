@@ -1,5 +1,6 @@
 package com.ecommerce.ProductService.Controller;
 
+import com.ecommerce.ProductService.DTOs.InstructorDto;
 import com.ecommerce.ProductService.DTOs.UserDto;
 import com.ecommerce.ProductService.Models.Instructor;
 import com.ecommerce.ProductService.Models.User;
@@ -39,8 +40,8 @@ public class UserController {
     }
 
     @GetMapping("/{name}")
-    public List<Instructor> getInstructorByName(@PathVariable(name="name") String name){
-        return userService.getInstructorByName(name);
+    public List<InstructorDto> getInstructorByName(@PathVariable(name="name") String name){
+        return userService.getInstructorDtoByName(name);
     }
 
     @GetMapping("/user/{name}")
